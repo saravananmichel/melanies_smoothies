@@ -36,7 +36,10 @@ if ingredients_List:
     #st.write(my_insert_stmt)
 
     time_to_insert = st.button('Submit Order')
-
+  
+    session.use_database("SMOOTHIES")
+    session.use_schema("PUBLIC")
+  
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
 
