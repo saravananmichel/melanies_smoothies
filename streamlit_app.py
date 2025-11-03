@@ -14,7 +14,7 @@ st.write('The name on your Smoothie will be', name_on_order)
 
 cnx=st.connection("snowflake")
 session = cnx.session()
-session.use_warehouse("COMPUTE_CH")
+
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 #st.dataframe(data=my_dataframe,use_container_width=True)
 
@@ -40,6 +40,7 @@ if ingredients_List:
   
     session.use_database("SMOOTHIES")
     session.use_schema("PUBLIC")
+    session.use_warehouse("COMPUTE_WH")
   
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
